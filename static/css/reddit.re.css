@@ -1,0 +1,267 @@
+.hero-unit h1 {
+    font-size:50px;
+}
+
+.btn-enormous {
+    width: 100%;
+    font-size: 30px;
+    padding:20px;
+}
+
+.alert-default {
+    background-color:#DFDFDF;
+    margin-bottom:30px;
+    color:#555;
+}
+
+[type="radio"] {
+    top:-4px;
+    position:relative;
+}
+
+body {
+    padding-top:70px;
+}
+
+h6 {
+    color:#BBB !important;
+    text-transform: uppercase;
+    padding-top:10px;
+    line-height:0px;
+}
+
+.underconstruction {
+    font-size:21px;
+    display: inline-block;
+    -webkit-transform: rotate(0.06turn);
+    -moz-transform: rotate(0.06turn);
+    transform: rotate(0.06turn);
+    -o-transform: rotate(0.06turn);
+    position: absolute;
+}
+
+h6 a {
+    color:#BBB !important;
+    margin-left:10px;
+}
+
+h6 a:first-child {
+    margin-left:0px;
+}
+
+.modactions.banuser,.modactions.unbanuser,.modactions.removelink,.modactions.approvelink,.modactions.removecomment,.modactions.approvecomment,.modactions.addmoderator,.modactions.removemoderator,.modactions.invitemoderator,.modactions.uninvitemoderator,.modactions.acceptmoderatorinvite,.modactions.addcontributor,.modactions.removecontributor,.modactions.editsettings,.modactions.editflair,.modactions.distinguish,.modactions.marknsfw {
+    height:16px;
+    width:16px;
+    display:inline-block;
+    content:" ";
+}
+
+.modactions.banuser {
+    background-image:url(../img/../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-17px -595px;
+    background-repeat:no-repeat;
+}
+
+.modactions.unbanuser {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-34px -578px;
+    background-repeat:no-repeat;
+}
+
+.modactions.removelink {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:0 -578px;
+    background-repeat:no-repeat;
+}
+
+.modactions.approvelink {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:0 -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.removecomment {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-85px -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.approvecomment {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-34px -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.addmoderator,.modactions.invitemoderator,.modactions.acceptmoderatorinvite {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-102px -472px;
+    background-repeat:no-repeat;
+}
+
+.modactions.removemoderator,.modactions.uninvitemoderator {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-17px -578px;
+    background-repeat:no-repeat;
+}
+
+.modactions.addcontributor {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-17px -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.removecontributor {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-102px -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.editsettings {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-34px -595px;
+    background-repeat:no-repeat;
+}
+
+.modactions.editflair {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-51px -595px;
+    background-repeat:no-repeat;
+}
+
+.modactions.distinguish {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-51px -561px;
+    background-repeat:no-repeat;
+}
+
+.modactions.marknsfw {
+    background-image:url(../img/sprite-reddit.GyUPD65ihNY.png);
+    background-position:-68px -561px;
+    background-repeat:no-repeat;
+}
+
+.subnav-fixed {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
+    border-color: #d5d5d5;
+    border-width: 0 0 1px; /* drop the border on the fixed edges */
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); /* IE6-9 */
+}
+.subnav-fixed .nav {
+    width: 938px;
+    margin: 0 auto;
+    padding: 0 1px;
+}
+.subnav .nav > li:first-child > a,
+.subnav .nav > li:first-child > a:hover {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+section.modlog {
+    margin-bottom:50px;
+}
+
+.re-s1 {
+    width:830px;
+}
+
+.re-s2 {
+    width:20px;
+    float:right !important;
+}
+
+[class*="re-"] {
+    float: left;
+    min-height: 1px;
+    margin-left: 20px;
+}
+
+.hero-unit.backdrop {
+    background-image:url(../img/backdrop.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.i-users,.i-earth,.i-cc,.i-cc-nc,.i-reddit,.i-list,.i-bot,.i-go {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-image: url(../img/reddit.re.sprite.png);
+    background-repeat: no-repeat;
+    margin-top:20px;
+}
+.i-users {
+    background-position: 0 0;
+}
+.i-earth {
+    background-position: -120px 0;
+}
+.i-cc {
+    background-position: -240px 0;
+}
+.i-cc-nc {
+    background-position: -360px 0;
+}
+.i-reddit {
+    background-position: -480px 0;
+}
+
+.i-list {
+    background-image:url(../img/list.png);
+    display:block;
+    margin-top:0px;
+}
+
+.i-bot {
+    background-image:url(../img/bot.png);
+    display:block;
+    margin-top:0px;
+}
+
+.i-go {
+    background-image: url(../img/go.png);
+    margin-top:0px;
+    width:30px;
+    height: 30px;
+}
+
+.icontext {
+    padding-top:10px;
+}
+
+h2.settings {
+    border-bottom: 1px solid #E5E5E5;
+    margin-top:35px;
+}
+
+.inline-form {
+    display:inline-block;
+}
+
+.btn {
+    /*font-weight:bold;*/
+}
+
+.alert a {
+    color:white !important;
+    text-decoration: underline !important;
+}
+
+a.btn, .btn {
+    text-decoration:none !important;
+}
+
+section.accountsection {
+    margin:50px 0px 50px 0px
+}
