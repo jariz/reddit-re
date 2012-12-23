@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <? foreach ($this->db->query("SELECT * FROM bots WHERE uid = {$this->session->userdata("uid")}")->result() as $bot) { ?>
-        <tr<?=$bot->disabled == 1 ? " class=\"error\">" : ""?>>
+        <tr<?=$bot->disabled == 1 ? " class=\"error\"" : ""?>>
             <td><?=$bot->usr?></td>
             <td><?=$bot->src_sub?></td>
             <td><?=$bot->dst_sub?></td>
