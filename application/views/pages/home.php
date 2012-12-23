@@ -26,7 +26,7 @@
                 </div>
                 <div class="span5">
                     <h3>Open source</h3>
-                    We want to be as open as possible. The source <strike>is available <a href="#">here</a></strike> will soon be available here.
+                    We want to be as open as possible. <a href="http://github.com/jariz/reddit-re">The source is available here</a>
                 </div>
             </div>
         </div>

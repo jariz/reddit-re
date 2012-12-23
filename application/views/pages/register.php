@@ -20,13 +20,13 @@
 <div class="control-group">
     <label class="control-label" for="usr">Reddit.re username</label>
     <div class="controls">
-        <input type="text" name="usr" placeholder="Reddit.re username">
+        <input type="text" name="usr" value="<?=set_value("usr")?>" placeholder="Reddit.re username">
     </div>
 </div>
 <div class="control-group">
     <label class="control-label" for="pwd">Password</label>
     <div class="controls">
-        <input type="password" name="pwd" placeholder="Password">
+        <input type="password" value="<?=set_value("pwd")?>" name="pwd" placeholder="Password">
     </div>
 </div>
 <div class="form-actions">

@@ -1,4 +1,6 @@
 <?
+    if (!$this->jariz->loggedin()) show_error("In order to keep track of your bots, you need to have an account.<br>Creating a account is surprisingly easy, We only want a username and a password.<br><a href='http://reddit.re/register?r=".base64_encode(current_url())."' class='btn btn-primary btn-enormous' style='margin-top:20px;'>Register now!</a><br><a href='http://reddit.re/login?r=".base64_encode(current_url())."' class='btn btn-success btn-enormous' style='margin-top:5px;'>Log in</a>", 403, "Not logged in");
+
     $this->form_validation->set_rules("src_sub", "Modlog subreddit", "required|alpha_dash|is_unique[bots.src_sub]|callback_subreddit_exists");
     $this->form_validation->set_rules("dst_sub", "Destination subreddit", "required|alpha_dash|callback_subreddit_exists");
 

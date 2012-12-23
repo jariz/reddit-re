@@ -21,8 +21,8 @@
             $route["(:any)"] = "page/bot/$1";
         default:
             $route['default_controller'] = "page";
+            $route["modbot/(:num)"] = "page/modbot/$1";
             $route["(:any)"] = "page/go/$1";
-            $route["bot/(:num)"] = "page/bot/$1";
             break;
     } else {
         $route['default_controller'] = "page";

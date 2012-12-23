@@ -10,6 +10,7 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+                <li><a href="http://reddit.re/account"><i class="icon-eye-open"></i> Dashboard</a> </li>
                 <li><a href="http://reddit.re/logout"><i class="icon-remove"></i> Log out</a></li>
             </ul>
         </li>

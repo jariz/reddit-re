@@ -82,7 +82,6 @@
             if($response == null) show_error("Internal Error", 500, "There was a problem communicating with the reddit server, please try again later");
             $resp = $response->getBody();
             $body = json_decode($resp);
-var_dump($resp);
 
             if (isset($body->json->data->modhash) && isset($body->json->data->cookie)) {
                 $this->modHash       = $body->json->data->modhash;
@@ -574,7 +573,6 @@ var_dump($resp);
             );
 
             $response = $this->sendRequest($verb, $url, $data);
-            var_dump(json_encode($response));
             if (!is_array($response) || !isset($response['jquery'])) {
                 return false;
             }

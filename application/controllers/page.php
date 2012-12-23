@@ -114,6 +114,12 @@
             ));
         }
 
+        public function modbot() {
+            $this->parser->parse("custom/template", array(
+                "content" => $this->load->view("custom/modbot", null, true), "usersettings" => $this->load->view("modules/usersettings", "", true)
+            ));
+        }
+
         public function filter() {
             $f = 0;
             $filters = array();

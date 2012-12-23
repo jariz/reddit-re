@@ -12,7 +12,6 @@
             } else $error = "Username/password not found";
         } else $error = "Username/password not found";
     }
-    var_dump(base64_encode($_GET["r"]));
     
     echo validation_errors();
     if(isset($error)) echo "<div class=\"alert alert-error\">".$error."</div>";

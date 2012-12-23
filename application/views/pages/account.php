@@ -23,7 +23,7 @@
             <td><?=$bot->disabled == 0 ? "Enabled" : "<strong>Disabled</strong>"?></td>
             <td><?=$this->db->query("SELECT ID FROM entries WHERE botid = {$bot->ID}")->num_rows()?></td>
             <td><?=$bot->lastcrawl == 0 ? "Never" : timespan($bot->lastcrawl)." ago"?></td>
-            <td><a href="#" class="btn btn-warning"><i class="icon-remove-circle icon-white"></i></a> <a class="btn btn-success"><i class="icon-edit icon-white"></i></a> </td>
+            <td><a href="#" class="btn btn-warning"><i class="icon-remove-circle icon-white"></i></a> <a href="<?=base_url()?>modbot/<?=$bot->ID?>" class="btn btn-success"><i class="icon-edit icon-white"></i></a> </td>
         </tr>
             <? } ?>
         </tbody>
@@ -31,7 +31,3 @@
     <a href="http://modlog.reddit.re/go" class="btn btn-primary btn-large"><i class="icon-plus icon-white"></i> Add new modlog bot</a>
     <a href="http://modlog.reddit.re" class="btn btn-warning btn-large"><i class="icon-question-sign icon-white"></i> What are modlog bots?</a>
 </section>
-
-    <section class="">
-
-    </section>

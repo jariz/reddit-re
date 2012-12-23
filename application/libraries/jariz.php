@@ -14,19 +14,19 @@
         return $iv_base64 . $encrypted;
     }
 
-    public function printResult($field, $bool=null) {
+    public function printResult($field, $bool=null, $bid) {
         $ci = & get_instance();
         if(!isset($bool)) {
             //load from cache
-            $q = $ci->db->query("SELECT $field FROM checks WHERE botid = {$ci->session->userdata("botid")}")->row_array();
+            $q = $ci->db->query("SELECT $field FROM checks WHERE botid = $bid")->row_array();
             if((bool)$q[$field]) echo "<span class=\"badge badge-success\">Succeeded</span>";
             else echo "<span class=\"badge badge-important\">FAILED</span>";
         } else {
             //load realtime & put into cache
-            $q = $ci->db->query("SELECT * FROM checks WHERE botid = {$ci->session->userdata("botid")}");
+            $q = $ci->db->query("SELECT * FROM checks WHERE botid = $bid");
             
-            if($q->num_rows() == 0) $ci->db->query(sprintf("INSERT INTO checks (ID, botid, timestamp, $field) VALUES (NULL, %s, %s, %s)", $ci->session->userdata("botid"), (string)time(), (string)(int)$bool));
-            else $ci->db->query(sprintf("UPDATE checks SET timestamp = %s, $field = %s WHERE botid = %s", (string)time(), (string)(int)$bool, $ci->session->userdata("botid")));
+            if($q->num_rows() == 0) $ci->db->query(sprintf("INSERT INTO checks (ID, botid, timestamp, $field) VALUES (NULL, %s, %s, %s)", $bid, (string)time(), (string)(int)$bool));
+            else $ci->db->query(sprintf("UPDATE checks SET timestamp = %s, $field = %s WHERE botid = %s", (string)time(), (string)(int)$bool, $bid));
             
             if($bool) echo "<span class=\"badge badge-success\">Succeeded</span>";
             else echo "<span class=\"badge badge-important\">FAILED</span>";
