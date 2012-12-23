@@ -15,8 +15,8 @@
                 $view = $this->load->view("pages/$page", "", true);
             } else show_404();
 
-            $this->parser->parse("template", array(
-                "content" => $view, "usersettings" => $this->load->view("usersettings", "", true)
+            $this->parser->parse("custom/template", array(
+                "content" => $view, "usersettings" => $this->load->view("modules/usersettings", "", true)
             ));
         }
 
@@ -24,10 +24,10 @@
             if(isset($_GET["hide"]))
                 $this->session->set_userdata("hide", true);
 
-            $view = $this->load->view("modlog_nav", "", true).$view;
+            $view = $this->load->view("modules/modlog_nav", "", true).$view;
 
             if(!$this->session->userdata("hide"))
-                $view = $this->load->view("annoyingreminder", "", true).$view;
+                $view = $this->load->view("modules/annoyingreminder", "", true).$view;
 
             return $view;
         }
@@ -37,14 +37,14 @@
                 $view = $this->load->view("modlog/$page", "", true);
             } else {
                 $q = $this->db->query("SELECT * FROM entries WHERE hash = \"{$this->db->escape_str($page)}\"");
-                if($q->num_rows > 0) $view = $this->load->view("modlog", array("query" => $q), true);
+                if($q->num_rows > 0) $view = $this->load->view("custom/modlog", array("query" => $q), true);
                 else show_404();
             }
 
             $view = $this->addStuffToView($view);
 
-            $this->parser->parse("template", array(
-                "content" => $view, "usersettings" => $this->load->view("usersettings", "", true)
+            $this->parser->parse("custom/template", array(
+                "content" => $view, "usersettings" => $this->load->view("modules/usersettings", "", true)
             ));
         }
 
@@ -82,11 +82,11 @@
                 $q2 = $this->db->query("SELECT * FROM entries $selectors ORDER BY timestamp DESC LIMIT ".(($page-1)*10).",10");
             else $q2 = $this->db->query("SELECT * FROM entries LIMIT 0,0");
 
-            $view = $this->load->view("modlog_search", array(), true);
+            $view = $this->load->view("modules/modlog_search", array(), true);
             $n = 0;
             foreach($q2->result() as $entry) {
                 $n++;
-                $view .= $this->load->view("modlog", array("query" => $this->db->query("SELECT * FROM entries WHERE guid = \"{$entry->guid}\"")), true);
+                $view .= $this->load->view("custom/modlog", array("query" => $this->db->query("SELECT * FROM entries WHERE guid = \"{$entry->guid}\"")), true);
             }
 
             if($n == 0) $view .= "<h6>No results found</h6>";
@@ -106,11 +106,11 @@
                 if(empty($prev_enabled)) $prev = "?page=".($page-1);
                 else $prev = "javascript:void(null)";
 
-                $view .= $this->load->view("pagination", array("entries" => $count, "page" => $page, "prev" => $prev, "next" => $next, "next_enabled" => $next_enabled, "prev_enabled" => $prev_enabled), true);
+                $view .= $this->load->view("modules/pagination", array("entries" => $count, "page" => $page, "prev" => $prev, "next" => $next, "next_enabled" => $next_enabled, "prev_enabled" => $prev_enabled), true);
             }
 
-            $this->parser->parse("template", array(
-                "content" => $view, "usersettings" => $this->load->view("usersettings", "", true)
+            $this->parser->parse("custom/template", array(
+                "content" => $view, "usersettings" => $this->load->view("modules/usersettings", "", true)
             ));
         }
 
