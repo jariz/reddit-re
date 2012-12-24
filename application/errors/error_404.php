@@ -16,7 +16,7 @@
         
         <div class="container">
             <h1><?=$heading?></h1><hr>
-            <p><?=str_replace("<p>", "<p><span class=\"badge badge-important\">Error</span> ", $message)?></p>
+            <p><?=str_replace("<p>", "<p><i class='icon-warning-sign'></i> ", $message)?></p>
         </div>
     </body>
 </html>

@@ -159,7 +159,8 @@ class Reddit
 
     public function isMod($user, $sub, $override = false)
     {
-        $resp = $this->sendRequest("GET", "http://www.reddit.com/r/$sub/about/moderators.json");
+        $resp = $this->sendRequest("GET", "http://www.reddit.com/r/$sub/about/moderators.json", '', false);
+        if($resp == null) return false;
         foreach ($resp["data"]["children"] as $entry) {
             if (strtolower($entry["name"]) == strtolower($user)) return true;
         }

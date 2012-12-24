@@ -8,6 +8,7 @@ $this->form_validation->set_rules("action", "Action", "required|alpha");
 if ($this->form_validation->run()) {
     switch (set_value("action")) {
         case "delete":
+            exit();
             $this->db->query("DELETE FROM bots WHERE id = $bid");
             $this->db->query("DELETE FROM entries WHERE botid = $bid");
             header("Location http://reddit.re/account");
@@ -31,13 +32,11 @@ $row = $this->db->query("SELECT * FROM bots WHERE ID = {$bid}")->row();
         <h3>Are you sure?</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger">
-            <strong>Deleting a bot will also delete its modog entries</strong>
-        </div>
+            <i class="icon-warning-sign"></i> Deleting a bot will also delete its modlog entries!
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn">Close</a>
-        <a href="#" class="btn btn-primary">Save changes</a>
+        <a href="#" onclick="$('#yolo').modal('hide')" class="btn">Close</a>
+        <a href="#" onclick="$('#deleteform').submit()" class="btn btn-danger">REMOVE BOT</a>
     </div>
 </div>
 <ul class="breadcrumb">
@@ -92,7 +91,7 @@ if (@!$fromcache) {
 } else {
     echo form_open("", array("class" => "inline-form"))?><input type="hidden" name="action" value="enable">
 <button id="disable" type="submit" class="btn btn-success btn-large">Enable bot</button></form> <? } ?>
- <?= form_open("", array("class" => "inline-form")) ?><input type="hidden" name="action" value="delete">
+ <?= form_open("", array("class" => "inline-form","id" => "deleteform")) ?><input type="hidden" name="action" value="delete">
 <button id="delete" type="submit" class="btn btn-danger btn-large">Delete bot</button></form>
 <a href="http://modlog.reddit.re/b/<?=strtolower($row->usr)?>" class="btn btn-primary btn-large">See all entries posted by
     bot</a>

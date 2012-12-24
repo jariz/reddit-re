@@ -16,7 +16,7 @@
         
         <div class="container">
             <h1>Woops!</h1><hr>
-            <p><span class="badge badge-important">Error</span> A internal error occured. We're looking into it!</p
+            <p><i class="icon-exclamation-sign"></i> A internal error occured. We're looking into it!</p
             <?write_file("error.txt", $message."<br><b>STACKTRACE</b><p>".$ci->jariz->var_string(xdebug_get_function_stack()))?>
         </div>
     </body>

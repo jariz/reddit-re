@@ -16,7 +16,7 @@
         
         <div class="container">
             <h1><?=$heading?></h1><hr>
-            <?=str_replace("<p>", "<p><span class=\"badge badge-important\">Error</span> ", $message)?>
+            <?=str_replace("<p>", "<p><i class='icon-warning-sign'></i> ", $message)?>
             <?write_file("error.txt", $ci->jariz->var_string(xdebug_get_function_stack()))?>
         </div>
     </body>
