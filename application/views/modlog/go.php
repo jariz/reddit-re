@@ -59,7 +59,7 @@ validation_errors()
 
     <div class="controls">
         <input type="text" name="dst_sub" value="<?=set_value("dst_sub")?>" placeholder="mysubreddit_modlog">
-    </div>
+    </div> 
 </div>
 
 <legend>Login information</legend>
