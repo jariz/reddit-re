@@ -3,7 +3,7 @@
     $this->form_validation->set_rules("pwd", "Password", "required");
     $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
     if($this->form_validation->run()) {
-        $q = $this->db->query(sprintf("INSERT INTO users VALUES (NULL, '%s', '%s')", $this->db->escape_str(set_value("usr")), $this->jariz->encrypt($this->db->escape_str(set_value("pwd")))));
+        $q = $this->db->query(sprintf("INSERT INTO users VALUES (NULL, '%s', '%s', 0)", $this->db->escape_str(set_value("usr")), $this->jariz->encrypt($this->db->escape_str(set_value("pwd")))));
         if(isset($_GET["r"]) && @base64_decode($_GET["r"]) != false) {
             header("Location: ".base64_decode($_GET["r"]));
         } else header("Location: account");

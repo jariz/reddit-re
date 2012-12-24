@@ -69,6 +69,16 @@
         return $decrypted;
     }
 
+    public function var_string($var) {
+        ob_start();
+        var_dump($var);
+        return ob_get_clean();
+    }
+
+    public function redditFail() {
+        show_error("There was a problem communicating with the reddit server, please try again later", 500, "Internal Error");
+    }
+
     public function getTag($action) {
         switch($action) {
             case "banuser":

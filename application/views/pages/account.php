@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <? foreach ($this->db->query("SELECT * FROM bots WHERE uid = {$this->session->userdata("uid")}")->result() as $bot) { ?>
+        <? $z = $this->db->query("SELECT * FROM bots WHERE uid = {$this->session->userdata("uid")}"); foreach ($z->result() as $bot) { ?>
         <tr<?=$bot->disabled == 1 ? " class=\"error\"" : ""?>>
             <td><?=$bot->usr?></td>
             <td><?=$bot->src_sub?></td>
@@ -28,6 +28,7 @@
             <? } ?>
         </tbody>
     </table>
+    <? if($z->num_rows == 0) { ?><h6 class="dust">dust</h6><? } ?>
     <a href="http://modlog.reddit.re/go" class="btn btn-primary btn-large"><i class="icon-plus icon-white"></i> Add new modlog bot</a>
     <a href="http://modlog.reddit.re" class="btn btn-warning btn-large"><i class="icon-question-sign icon-white"></i> What are modlog bots?</a>
 </section>

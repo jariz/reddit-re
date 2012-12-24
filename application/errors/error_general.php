@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<? $ci =& get_instance(); ?><!DOCTYPE html>
 <html>
     <head>
         <link href="http://reddit.re/static/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
@@ -17,6 +17,7 @@
         <div class="container">
             <h1><?=$heading?></h1><hr>
             <?=str_replace("<p>", "<p><span class=\"badge badge-important\">Error</span> ", $message)?>
+            <?write_file("error.txt", $ci->jariz->var_string(xdebug_get_function_stack()))?>
         </div>
     </body>
 </html>

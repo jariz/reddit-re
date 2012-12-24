@@ -265,3 +265,12 @@ a.btn, .btn {
 section.accountsection {
     margin:50px 0px 50px 0px
 }
+
+h6.dust {
+    display: block;
+    text-align: center;
+    text-transform: none;
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 50px;
+}

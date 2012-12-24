@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<? $ci =& get_instance(); ?><!DOCTYPE html>
 <html>
     <head>
         <link href="<?=base_url()?>static/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
@@ -15,9 +15,9 @@
         </div>
         
         <div class="container">
-            <h1><?=$heading?></h1><hr>
-            <!--<p><span class="badge badge-important">Error</span> A internal error occured. We're looking into it!</p>-->
-            <?=$message?>
+            <h1>Woops!</h1><hr>
+            <p><span class="badge badge-important">Error</span> A internal error occured. We're looking into it!</p
+            <?write_file("error.txt", $message."<br><b>STACKTRACE</b><p>".$ci->jariz->var_string(xdebug_get_function_stack()))?>
         </div>
     </body>
 </html>
