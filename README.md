@@ -14,3 +14,15 @@ Awesome site that has several beautiful bootstrap 'templates'
 My favorite PHP-framework.  
 * [IcoMoon](http://icomoon.io/app/)  
 Great icons. Very useful app  
+  
+##What specs does my server need to run this?  
+* (at least) PHP 5.2  
+* MySQL  
+* xdebug extension on PHP  
+  
+##How to set it up?  
+1. Edit `application/config/config.php` and fill in random strings pretty much everywhere except for the username and password which will contain your default's bot username and password  
+2. Edit `application/config/database.php` and enter DB info.
+3. Run `db.sql`  
+4. Edit hardcoded URL's, Sorry, Sadly there are quite a lot of hardcoded URL's.  
+5. Enjoy.
