@@ -113,13 +113,13 @@ var thiz;
                 ).insertAfter($input);
                 $insert.children(".right").children(".btn").click(function() {
                     $(this).parent().parent().fadeOut('', function() { $(this).remove(); });
-                })
+                });
                 $insert.fadeIn();
             }
         });
 
-        $("#bot-setting").submit(function() {
-            $.each($(this).children("filter-item"), function() { console.log(this); });
+        $("#bot-settings").submit(function() {
+            $.each($(this).children(".control-group").children(".filter").children(".filter-item"), function() { console.log(this); });
             return false;
         });
     });
