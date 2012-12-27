@@ -109,6 +109,8 @@
             case "wikipermlevel":
             case "distinguish":
                 return "warning";
+            default:
+                return "";
         }
     }
 

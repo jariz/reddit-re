@@ -184,12 +184,11 @@ class Reddit
             $request->setCookie('reddit_session', $this->sessionCookie);
         }
         $response = $request->getResponse();
-
+        if (!($response instanceof HttpResponse)) return array();
         $body = $response->getBody();
         //print($body);
         preg_match_all('/(?-i:<tr class="modactions" style="background-color: rgb\(255,255,255\)" data-fullname="ModAction_)([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})(?-i:"><td class="timestamp whitespace:nowrap"><time title=")[^\n\r"]+(?-i:" datetime=")([^\n\r"]+)">[^\n\r<]+(?-i:<\/time>)[^\n\r<]+(?-i:<\/td><td class="whitespace:nowrap"><a href=")(\bhttp:\/\/www\.reddit\.com(?:\/[]\d!"#$%&\'()*+,.:;<=>?@[\\\\_`a-z{|}~^-]+){3}\/[]\d!"#$%&\'()*+,.:;<=>?@[\\\\_`a-z{|}~^-]+(?:\?[]\d!"#$%&\'()*+,.\/:;<=>?@[\\\\_`a-z{|}~^-]*)?) >([^\n\r<]{12,})(?-i:<\/a><\/td><td class="button"><a href=")(\bhttp:\/\/www\.reddit\.com(?:\/[]\d!"#$%&\'()*+,.:;<=>?@[\\\\_`a-z{|}~^-]+){3}\/[]\d!"#$%&\'()*+,.:;<=>?@[\\\\_`a-z{|}~^-]+(?:\?[]\d!"#$%&\'()*+,.\/:;<=>?@[\\\\_`a-z{|}~^-]*)?)(?-i:" class="modactions )(\p{Ll}+)(?-i:" ><\/a><\/td><td class="description">)(.+?)(?-i:<\/td><\/tr>)/iu', $body, $result, PREG_PATTERN_ORDER);
         return $result;
-
     }
 
     /**

@@ -82,7 +82,7 @@
                 $q2 = $this->db->query("SELECT * FROM entries $selectors ORDER BY timestamp DESC LIMIT ".(($page-1)*10).",10");
             else $q2 = $this->db->query("SELECT * FROM entries LIMIT 0,0");
 
-            $view = $this->load->view("modules/modlog_search", array(), true);
+            $view = $this->load->view("modules/modlog_filter", array("filter" => uri_string()), true);
             $n = 0;
             foreach($q2->result() as $entry) {
                 $n++;

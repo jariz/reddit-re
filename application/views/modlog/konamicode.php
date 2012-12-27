@@ -12,6 +12,7 @@
                 $n = 0;
                 foreach($result[0] as $entry) {
                     $i++;
+                    try {
                     if($this->db->query("SELECT guid FROM entries WHERE guid = \"{$result[1][$i]}\"")->num_rows() == 0) {
                         $hash = random_string("alnum", 5);
                         $this->db->query("INSERT INTO entries VALUES (NULL, ".strtotime($result[2][$i]).", \"{$this->db->escape_str($result[4][$i])}\", \"{$this->db->escape_str($result[6][$i])}\", \"{$this->db->escape_str($result[7][$i])}\", {$bot->ID}, \"{$this->db->escape_str($result[1][$i])}\", \"{$hash}\")");
@@ -20,6 +21,9 @@
                         $modded_desc = $this->jariz->formatDesc($row->desc);
                         $this->reddit->submit($bot->dst_sub, "link", sprintf("%s %s [%s]", $row->username, $modded_desc, $row->action), "http://modlog.reddit.re/$hash");
                         $n++;
+                    }
+                    } catch(Exception $e) {
+                        $log .= "       Failed. ".$e->getMessage();
                     }
                 }
                 $this->db->query("UPDATE bots SET lastcrawl = ".time()." WHERE id = {$bot->ID}");

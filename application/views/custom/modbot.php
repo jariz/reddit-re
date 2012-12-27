@@ -8,7 +8,6 @@ $this->form_validation->set_rules("action", "Action", "required|alpha");
 if ($this->form_validation->run()) {
     switch (set_value("action")) {
         case "delete":
-            exit();
             $this->db->query("DELETE FROM bots WHERE id = $bid");
             $this->db->query("DELETE FROM entries WHERE botid = $bid");
             header("Location http://reddit.re/account");
@@ -35,8 +34,8 @@ $row = $this->db->query("SELECT * FROM bots WHERE ID = {$bid}")->row();
             <i class="icon-warning-sign"></i> Deleting a bot will also delete its modlog entries!
     </div>
     <div class="modal-footer">
-        <a href="#" onclick="$('#yolo').modal('hide')" class="btn">Close</a>
-        <a href="#" onclick="$('#deleteform').submit()" class="btn btn-danger">REMOVE BOT</a>
+        <a href="javascript:void(null)" onclick="$('#yolo').modal('hide')" class="btn">Close</a>
+        <a href="javascript:void(null)" onclick="$('#deleteform').submit()" class="btn btn-danger">REMOVE BOT</a>
     </div>
 </div>
 <ul class="breadcrumb">
@@ -84,6 +83,19 @@ if (@!$fromcache) {
     refreshed: <?=timespan($this->db->query("SELECT timestamp FROM checks WHERE botid = {$bid}")->row()->timestamp)?>
     ago</h6>
 <? } ?>
+
+<h2 class="settings">Bot settings <small><a href="javascript:void(null)" rel="tooltip" title="These settings will only be applied to new entries!">(!)</a></small></h2>
+<?= form_open("modbot", array("class" => "form-horizontal", "id" => "bot-settings")) ?><input type="hidden" name="action" value="settings">
+<div class="control-group">
+    <label class="checkbox"><input type="checkbox" name="showmod" value="1" <?=$row->showmod?>> Show moderator name</label>
+    <?=$this->load->view("modules/modlog_filter", array("filter" => $row->filter, "bsett" => true), true)?>
+    <input type="hidden" name="fstring" value="<?=$row->filter?>">
+</div>
+<div class="form-actions">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <input type="reset" class="btn" value="Cancel">
+</div>
+</form>
 <h2 class="settings">Bot actions</h2>
 <? if ($row->disabled == "0") {
     echo form_open("", array("class" => "inline-form")) ?><input type="hidden" name="action" value="disable">

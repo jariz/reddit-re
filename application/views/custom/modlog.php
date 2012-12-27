@@ -1,4 +1,4 @@
-<? $row = $query->row(); $bot = $this->db->query("SELECT * FROM bots WHERE ID = {$row->botid}")->row(); ?> 
+<? $row = $query->row(); $bb = $this->db->query("SELECT * FROM bots WHERE ID = {$row->botid}");  if($bb->num_rows() == 0) show_error("Internal Error (Couldn't find the bot matching this modlog entry)"); $bot = $bb->row(); ?>
 <h2><span class="modactions <?=$row->action?>"></span> <a href="<?=base_url()?>u/<?=$row->username?>"><?=$row->username?></a> <?=$row->desc?> in <a href="/r/<?=$bot->src_sub?>"><?=$bot->src_sub?></a> <?=strtolower(timespan($row->timestamp))?> ago</h2>
 <p><strong>Time:</strong> <?=timespan($row->timestamp)?> ago</p>
 <p><strong>Reported by bot:</strong> <a href="<?=base_url()?>b/<?=$bot->usr?>"><?=$bot->usr?></a></p>
