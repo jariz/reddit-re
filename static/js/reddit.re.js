@@ -1,23 +1,28 @@
 var thiz;
-!function ($) {
-
-    function fstring2array(fstring) {
-        var arr = fstring.split("/");
-        for(var i = 0; i < arr.length; i++) {
-
+function new_snap($sub, that) {
+    $("#loading .modal-header h3").html("Creating new snapshot...");
+    $("#loading .modal-body p:first-child").html("Creating new snapshot for subreddit '" + $sub + "'....");
+    $("#loading").modal("show");
+    $.getJSON("api/new-snap/" + $sub, undefined, function (data) {
+        if (!data.error) {
+            window.location = "";
+        } else {
+            $("#loading").modal("hide");
+            $(that).popover({placement:"right", title:"<strong>Action failed</strong>", html:true, content:data.msg, trigger:"manual"});
+            $(that).popover("show");
+            thiz = that;
+            setTimeout("$(thiz).popover(\"hide\")", 2000);
         }
-    }
-
-    function array2fstring(array) {
-
-    }
+    });
+}
+!function ($) {
 
     function getFilterName($filter) {
         switch ($filter) {
             case "r":
                 return "With subreddit:";
             case "b":
-                return $z = "With bot:";
+                return "With bot:";
                 break;
             case "u":
                 return "With user:";
@@ -29,7 +34,7 @@ var thiz;
     }
 
     function getTagClass($action) {
-        switch($action) {
+        switch ($action) {
             case "banuser":
             case "removelink":
             case "uninvitemoderator":
@@ -66,13 +71,13 @@ var thiz;
 
     $(window).load(function () {
         /*$('#re-s').submit(function () {
-            window.location = segment + "/" + $("#re-s input").val();
-            return false;
-        });*/
+         window.location = segment + "/" + $("#re-s input").val();
+         return false;
+         });*/
         $("#publicmodlog").change(function () {
             if (!$("#publicmodlog").is(":checked")) {
                 $("#usrinfo").animate({"opacity":"1", "height":"220px"}, "500")
-                .css({"display":"block"});
+                    .css({"display":"block"});
             }
             else {
                 $("#usrinfo").animate({"opacity":"0", "display":"none", "height":"0px"}, '500', function () {
@@ -89,13 +94,13 @@ var thiz;
             }
         });
         $('a[rel="tooltip"]').tooltip();
-        $(".filter .btn-primary").click(function() {
+        $(".filter .btn-primary").click(function () {
             var $filter = $($(this).parent().parent());
-            if($filter.attr("data-bsett") == 1) {
+            if ($filter.attr("data-bsett") == 1) {
                 var $input = $filter.children(".filter-input");
                 var $val = $($input).children("input[type=text]").val();
                 $($input).children("input[type=text]").val("");
-                if($val == "") {
+                if ($val == "") {
                     $(this).popover({placement:"right", title:"<strong>You haven't entered anything</strong>", html:true, content:"Please fill in the 'Value' field", trigger:"manual"});
                     $(this).popover("show");
                     thiz = this;
@@ -105,21 +110,29 @@ var thiz;
                 var $type = $($input).children("select").val();
 
                 var $insert = $(
-                    "<div data-ftype=\""+$type+"\" style=\display:none;\" data-fvalue=\""+$val+"\" class=\"well well-small filter-item\">"+
-                    "<div class=\"left\"> "+getFilterName($type)+" <span class=\"badge "+getTagClass($type)+"\">" +$val+  "</span></div>"+
-                    "<div class=\"right\">"+
-                        "<a href=\"javascript:void(null)\" data-fdelete=\"1\" class=\"btn btn-danger btn-mini\"><i  class=\"icon-remove icon-white\"></i></a>"+
-                    "</div>"
+                    "<div data-ftype=\"" + $type + "\" style=\display:none;\" data-fvalue=\"" + $val + "\" class=\"well well-small filter-item\">" +
+                        "<div class=\"left\"> " + getFilterName($type) + " <span class=\"badge " + getTagClass($type) + "\">" + $val + "</span></div>" +
+                        "<div class=\"right\">" +
+                        "<a href=\"javascript:void(null)\" data-fdelete=\"1\" class=\"btn btn-danger btn-mini\"><i  class=\"icon-remove icon-white\"></i></a>" +
+                        "</div>"
                 ).insertAfter($input);
-                $insert.children(".right").children(".btn").click(function() {
-                    $(this).parent().parent().fadeOut('', function() { $(this).remove(); });
+                $insert.children(".right").children(".btn").click(function () {
+                    $(this).parent().parent().fadeOut('', function () {
+                        $(this).remove();
+                    });
                 });
                 $insert.fadeIn();
             }
         });
 
-        $("#bot-settings").submit(function() {
-            $.each($(this).children(".control-group").children(".filter").children(".filter-item"), function() { console.log(this); });
+        $("#subreddits").change(function () {
+            window.location = "?sub=" + $("#subreddits").val();
+        })
+
+        $("#bot-settings").submit(function () {
+            $.each($(this).children(".control-group").children(".filter").children(".filter-item"), function () {
+                console.log(this);
+            });
             return false;
         });
     });

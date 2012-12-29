@@ -163,6 +163,9 @@
                 case "modlog.reddit.re":
                     $this->modlog("home");
                     break;
+                case "template.reddit.re":
+                    $this->template("home");
+                    break;
                 default:
                     $this->go("home");
                     break;

@@ -47,6 +47,21 @@
         return $x["$prop"];
     }
 
+    public function setProp($prop,$val) {
+        $ci = & get_instance();
+        $s = $ci->session->userdata("uid");
+        $x = $ci->db->query("UPDATE users SET $prop = \"{$ci->db->escape_str($val)}\" WHERE ID = $s");
+    }
+
+    public function getSubredditCSS($sub) {
+        $r = @file_get_contents("http://www.reddit.com/r/$sub/about/stylesheet");
+        if($r == false) return false;
+        $s = explode("<code class=\"language-css\">", $r);
+        if(!isset($s[1])) return false;
+        $b = explode("</code>", $s[1]);
+        return $b[0];
+    }
+
     public function decrypt($encrypted) {
         $ci = & get_instance();
         $salt = $ci->config->item("salt");
@@ -77,6 +92,15 @@
 
     public function redditFail() {
         show_error("There was a problem communicating with the reddit server, please try again later", 500, "Internal Error");
+    }
+
+    public function renderScreenshot($url) {
+        $f = $_SERVER['DOCUMENT_ROOT']."/static/snapshots/";
+        $img = random_string().".png";
+        $cmd = "xvfb-run --server-args=\"-screen 0, 1366x960x24\" wkhtmltoimage --use-xserver --width 1360 --height 960 $url $f$img";
+        exec($cmd, $out);
+        //var_dump($cmd, $out);
+        return $img;
     }
 
     public function getTag($action) {

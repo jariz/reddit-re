@@ -19,6 +19,19 @@
         case "bot.reddit.re":
             $route['default_controller'] = "page";
             $route["(:any)"] = "page/bot/$1";
+        case "snapshot.reddit.re":
+            $route["default_controller"] = "snapshot";
+            $route["small/(:any)"] = "snapshot/small";
+            $route["(:any)"] = "snapshot/full/$1";
+            break;
+        case "template.reddit.re":
+            $route["default_controller"] = "template";
+            $route["api/(:any)"] = "template/api";
+            $route["api/(:any)/(:any)"] = "template/api";
+            $route["api/(:any)/(:any)/(:any)"] = "template/api";
+            $route["snapshot/(:any)"] = "template/snapshot/$1";
+            $route["(:any)"] = "template/go/$1";
+            break;
         default:
             $route['default_controller'] = "page";
             $route["modbot/(:num)"] = "page/modbot/$1";
