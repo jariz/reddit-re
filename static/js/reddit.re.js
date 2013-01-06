@@ -130,9 +130,15 @@ function new_snap($sub, that) {
         })
 
         $("#bot-settings").submit(function () {
+            var fstring = "";
             $.each($(this).children(".control-group").children(".filter").children(".filter-item"), function () {
-                console.log(this);
+                fstring += "/"+$(this).attr("data-ftype")+"/"+$(this).attr("data-fvalue");
             });
+            console.log(fstring);
+            $("#bot-settings .form-actions button").html("Loading....");
+            $("#bot-settings .form-actions button").attr("class", "btn btn-primary disabled");
+            $("#bot-settings .form-actions input").attr("class", "btn disabled");
+            $.get("api/")
             return false;
         });
     });

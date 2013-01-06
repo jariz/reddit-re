@@ -7,6 +7,7 @@
             $this->load->library(array("parser", "session", "form_validation", "reddit", "jariz"));
             $this->load->helper(array("url", "file", "form", "string", "date", "security"));
             //$this->output->enable_profiler(TRUE);
+            $this->load->library("reddit_oauth", array("oauth_id" => $this->config->item("oauth_id"), "oauth_secret" => $this->config->item("oauth_secret"), "redirect_url" => "http://template.reddit.re/auth"));
             $this->load->database();
         }
 

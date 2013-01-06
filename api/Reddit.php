@@ -173,6 +173,8 @@ class Reddit
         }
     }
 
+    private $modlog_res;
+
     public function getModLog($sub)
     {
         //v1 : parse as html because json sucks and doesn't give anything usual (parameters sr and mod can't be looked up)
@@ -184,6 +186,7 @@ class Reddit
             $request->setCookie('reddit_session', $this->sessionCookie);
         }
         $response = $request->getResponse();
+        $this->modlog_res = $response;
         if (!($response instanceof HttpResponse)) return array();
         $body = $response->getBody();
         //print($body);
