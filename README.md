@@ -14,11 +14,17 @@ Awesome site that has several beautiful bootstrap 'templates'
 My favorite PHP-framework.  
 * [IcoMoon](http://icomoon.io/app/)  
 Great icons. Very useful app  
+* [PHP OAuth Client](https://github.com/adoy/PHP-OAuth2/)  
+Simple PHP OAuth client, recommended by reddit  
+* [wkhtmltopdf](https://code.google.com/p/wkhtmltopdf/) (wkhtmltoimage to be precise)  
+Awesome program that can take screenshots of websites by using webkit, I absolutely love it.
   
 ##What specs does my server need to run this?  
 * (at least) PHP 5.2  
 * MySQL  
-* xdebug extension on PHP  
+* xdebug extension on PHP (required)  
+* wkhtmltoimage command
+* GD2 PHP Extension
   
 ##How to set it up?  
 1. Edit `application/config/config.php` and fill in random strings pretty much everywhere except for the username and password which will contain your default's bot username and password  
