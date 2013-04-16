@@ -74,6 +74,12 @@ function new_snap($sub, that) {
          window.location = segment + "/" + $("#re-s input").val();
          return false;
          });*/
+
+        //start prettifier
+        PR.prettyPrint();
+
+        $("#subreddits").select2();
+
         $("#publicmodlog").change(function () {
             if (!$("#publicmodlog").is(":checked")) {
                 $("#usrinfo").animate({"opacity":"1", "height":"220px"}, "500")
@@ -138,7 +144,7 @@ function new_snap($sub, that) {
             $("#bot-settings .form-actions button").html("Loading....");
             $("#bot-settings .form-actions button").attr("class", "btn btn-primary disabled");
             $("#bot-settings .form-actions input").attr("class", "btn disabled");
-            $.get("api/")
+            $.get("")
             return false;
         });
     });

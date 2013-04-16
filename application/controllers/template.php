@@ -53,10 +53,12 @@ class template extends CI_Controller
 
     public function snapshot($snap) {
         $q = $this->db->query("SELECT * FROM snapshots WHERE hash = \"{$this->db->escape_str($snap)}\"");
-        if($q->num_rows > 0)
+        if($q->num_rows > 0) {
+            $images = $this->db->query("SELECT * FROM snapshots_images WHERE snapshot_id = ?", $q->row()->ID)->result();
             $this->parser->parse("custom/template", array(
-                "content" => $this->load->view("custom/snapshot", array("row" => $q->row()), true), "usersettings" => $this->load->view("modules/usersettings", "", true)
+                "content" => $this->load->view("custom/snapshot", array("row" => $q->row(), "images" => $images), true), "usersettings" => $this->load->view("modules/usersettings", "", true)
             ));
+        }
         else show_404();
     }
 
@@ -72,8 +74,15 @@ class template extends CI_Controller
                     if (($subreddits = $this->getSubreddits()) != false) {
                         if (in_array($params[3], $subreddits)) {
                             $snap = $this->jariz->renderScreenshot("http://reddit.com/r/{$params[3]}");
-                            $css = $this->jariz->getSubredditCSS($params[3]);
-                            $this->db->query("INSERT INTO snapshots VALUES (NULL, \"{$this->db->escape_str($params[3])}\", \"{$this->db->escape_str($css)}\", \"$snap\", ".time().", {$this->session->userdata("uid")}, \"".random_string('alnum', 5)."\")");
+                            $data = $this->jariz->getSubredditData($params[3]);
+
+                            $this->db->query("INSERT INTO snapshots VALUES (NULL, \"{$this->db->escape_str($params[3])}\", \"{$this->db->escape_str($data->css)}\", \"$snap\", ".time().", {$this->session->userdata("uid")}, \"".random_string('alnum', 5)."\", \"{$data->header}\")");
+                            $sid = $this->db->insert_id();
+
+                            foreach($data->images as $image) {
+                                $this->db->query("INSERT INTO snapshots_images VALUES (NULL, ?, ?, ?)", array($sid, $image->name, $image->image));
+                            }
+
                             $this->apiOutput(false, null);
                         } else $this->apiOutput(true, "This is not your subreddit");
                     } else $this->apiOutput(true, "Invalid session");

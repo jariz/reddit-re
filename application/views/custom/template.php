@@ -2,10 +2,13 @@
 <html>
     <head>
         <link href="<?=base_url()?>static/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+        <link href="<?=base_url()?>static/css/select2.css" rel='stylesheet' type='text/css'>
         <link href="<?=base_url()?>static/css/reddit.re.css" rel='stylesheet' type='text/css'>
         <script type="application/javascript" src="http://static.jariz.pro/js/jquery.min.js"></script>
         <script type="application/javascript" src="<?=base_url()?>static/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="<?=base_url()?>static/js/prettify.js"></script>
         <script type="application/javascript" src="<?=base_url()?>static/js/reddit.re.js"></script>
+        <script type="application/javascript" src="<?=base_url()?>static/js/select2.min.js"></script>
         <title>Reddit.re - The ultimate collection of reddit modtools</title>
     </head>
     <body>

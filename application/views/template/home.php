@@ -14,7 +14,6 @@
 if(isset($subreddits) && isset($subreddits[0]))
     if(@isset($_GET["sub"])) if(in_array($_GET["sub"], $subreddits)) $ssub = $_GET["sub"];
     else $ssub = $subreddits[0]; else $ssub = $subreddits[0];
-//var_dump($this->reddit_oauth->fetch("api/r/TheOffspring/about/stylesheet.json"));
 ?>
 
 <div class="modal hide fade" id="loading">
@@ -48,15 +47,15 @@ if(isset($subreddits) && isset($subreddits[0]))
     <a href="<?=base_url()?>revoke" class="btn btn-danger btn-large"><i class="icon-remove-circle icon-white"></i> Revoke authorization</a>
 </p>
 <? } ?>
-<h2 class="settings">Snapshots
-    <div class="pull-right">
+
+<div class="pull-right">
     <? if(isset($subreddits)) { ?>
-        <select id="subreddits"> <? foreach($subreddits as $sub) { ?>
-            <option<?=$sub == $ssub ? " selected=\"selected\"" : "";?>><?=$sub?></option>
-        <? } ?></select>
+        <select id="subreddits" class="select2"> <? foreach($subreddits as $sub) { ?>
+                <option<?=$sub == $ssub ? " selected=\"selected\"" : "";?>><?=$sub?></option>
+            <? } ?></select>
     <? }?>
-    </div>
-</h2>
+</div>
+<h2 class="settings">Snapshots</h2>
 <?if(!isset($subreddits) && !isset($subreddits[0])) { ?><h2><small>Nothing to display</small></h2><? } else { ?>
 
 <ul class="thumbnails">

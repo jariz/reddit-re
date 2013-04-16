@@ -1,6 +1,7 @@
 <?
-if ($this->jariz->loggedin()) if ($this->jariz->getProp("dev") == 1) $go = true;
-else if (php_sapi_name() == "cli") $go = true;
+if(php_sapi_name() != "cli") {
+    if ($this->jariz->loggedin()) if ($this->jariz->getProp("dev") == 1) $go = true; }
+else $go = true;
 
 if (!isset($go)) show_error("You're not supposed to be here....");
 

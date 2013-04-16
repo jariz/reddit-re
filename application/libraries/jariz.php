@@ -53,13 +53,33 @@
         $x = $ci->db->query("UPDATE users SET $prop = \"{$ci->db->escape_str($val)}\" WHERE ID = $s");
     }
 
-    public function getSubredditCSS($sub) {
+    public function getSubredditData($sub) {
+
+        //OUTDATED: god bless the reddit api gods for better methods to get this now
+        /*
         $r = @file_get_contents("http://www.reddit.com/r/$sub/about/stylesheet");
         if($r == false) return false;
         $s = explode("<code class=\"language-css\">", $r);
         if(!isset($s[1])) return false;
         $b = explode("</code>", $s[1]);
         return $b[0];
+        */
+
+        $r = @file_get_contents("http://www.reddit.com/r/$sub/about/stylesheet.json");
+        $c = @file_get_contents("http://www.reddit.com/r/$sub/about.json");
+        if($r == false || $c == false) return false;
+        $stylesheet = json_decode($r);
+        $about = json_decode($c);
+        $final["css"] = $stylesheet->data->stylesheet;
+        $img_path = $_SERVER['DOCUMENT_ROOT']."/static/header/";
+        write_file($img_path.($hdr=random_string().".png"), @file_get_contents($about->data->header_img));
+        $final["header"] = $hdr;
+        $img_path = $_SERVER['DOCUMENT_ROOT']."/static/images/";
+        foreach($stylesheet->data->images as $image) {
+            write_file($img_path.($img=random_string().".png"), @file_get_contents($image->url));
+            $final["images"][] = (object)array("image" => $img, "name" => $image->name);
+        }
+        return (object)$final;
     }
 
     public function decrypt($encrypted) {
